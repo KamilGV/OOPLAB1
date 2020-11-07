@@ -9,8 +9,8 @@ class point
 {
 private:
     int x;
-    int y;
 public:
+    int y;
     point() {
         printf("Конструктор\n");
         x = 0;
@@ -30,8 +30,17 @@ public:
         printf("%d, %d\n", x, y);
         printf("Деструктор\n");
     }
-
+    void change(int chx, int chy) {
+        x = x + chx;
+        y = y + chy;
+    }
+    void reset();
 };
+
+void point::reset() {
+    x = 0;
+    y = 0;
+}
 int main()
 {
     setlocale(LC_ALL, "Russian");
@@ -47,10 +56,18 @@ int main()
     point* p5 = new point(1, 2);
     point* p6 = new point(*p5);
 
+    p4->y=5555;  // работает
+    //p4->x=11111   - не работает, так как x - private
+
     delete p4;
     delete p5;
     delete p6;
 
+    printf("\nРабота с методами:\n");
+    point* p7 = new point(1,2);
+    p7->reset();
+    p7->change(5, 5);
+    delete p7;
     _getch();
 }
 
