@@ -42,7 +42,14 @@ int main()
         point p3(p2);
     }
 
-    
+    printf("\nДинамически созданные объекты: \n");
+    point* p4 = new point;
+    point* p5 = new point(1, 2);
+    point* p6 = new point(*p5);
+
+    delete p4;
+    delete p5;
+    delete p6;
 
     _getch();
 }
